@@ -140,5 +140,3 @@ and finally back to your terminal and run
 ```shell
 php composer.phar dump-autoload
 ```
-
-
