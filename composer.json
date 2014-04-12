@@ -1,12 +1,16 @@
 {
-    "name": "purposemedia/menu",
+    "name": "pulpitum/menu",
     "description": "Effortless menu building for Laravel 4",
-    "homepage": "https://bitbucket.org/purposemedia/menu/",
+    "homepage": "https://github.com/pulpitum/menu",
     "license": "MIT",
     "authors": [
         {
             "name": "Luke Snowden",
             "email": "luke@purposemedia.co.uk"
+        },
+		{
+            "name": "Rguedes",
+            "email": "rolandoguedes@gmail.com"
         }
     ],
     "require": {
@@ -14,16 +18,16 @@
     },
     "autoload": {
         "psr-0": {
-            "Purposemedia\\Menu": "src/"
+            "Pulpitum\\Menu": "src/"
         }
     },
     "scripts": {
         "post-update-cmd": [
-            "php artisan package:install purposemedia/menu"
+            "php artisan package:install pulpitum/menu"
         ],
         "post-create-project-cmd": [
             "php artisan key:generate",
-            "php artisan package:install purposemedia/menu"
+            "php artisan package:install pulpitum/menu"
         ]
     },
     "minimum-stability": "dev"

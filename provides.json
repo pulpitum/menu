@@ -1,11 +1,11 @@
 {
 	"providers": [
-		"Purposemedia\Menu\MenuServiceProvider"
+		"Pulpitum\Menu\MenuServiceProvider"
 	],
 	"aliases": [
 		{
 			"alias": "Menu",
-			"facade": "Purposemedia\Menu\Facades\Menu"
+			"facade": "Pulpitum\Menu\Facades\Menu"
 		}
 	]
 }
