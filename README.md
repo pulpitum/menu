@@ -105,9 +105,16 @@ Add the following to you applications composer.json file
 
 
 ```json
+"repositories": [
+	{
+	  "type": "vcs",
+	  "name": "pulpitum/menu",
+	  "url": "https://github.com/pulpitum/menu.git"
+	}
+],
 "require": {
         ...
-        "purposemedia/menu" : "dev-master"
+        "pulpitum/menu" : "dev-master"
 },
 ```
 
@@ -122,7 +129,7 @@ add the following to your /app/config/app.php's provider array.
 
 
 ```php
-'Purposemedia\Menu\MenuServiceProvider'
+'Pulpitum\Menu\MenuServiceProvider'
 ``` 
 
 
@@ -130,7 +137,7 @@ add the following to your /app/config/app.php's aliases array.
 
 
 ```php
-'Menu'      => 'Purposemedia\Menu\Facades\Menu'
+'Menu'      => 'Pulpitum\Menu\Facades\Menu'
 ```
 
 
