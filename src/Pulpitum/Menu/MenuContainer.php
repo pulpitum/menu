@@ -116,8 +116,9 @@ class MenuContainer
 	 * @param $menu (false/string)
 	*/
 
-	public function setMenuType( $type = false, $menu = false, $location = false )
+	public function setMenuType( $type = false, $menu = false, $location = false, $class=false )
 	{
+		$menu = \camel_case( $menu );
 		if( ! isset( $this->navigations[$menu] ) )
 		{
 			Throw new \Exception( "Menu '{$menu}' does not exist or you have called this method before the menu has been created." );
@@ -126,7 +127,12 @@ class MenuContainer
 		{
 			$location = $this->stylesLocation;
 		}
-		$this->navigations[$menu]->setType( $type, $location );
+		$this->navigations[$menu]->setType( $type, $location, $class );
+	}
+
+	public function issetMenu($name){
+		$name = \camel_case( $name );
+		return isset( $this->navigations[$name] );
 	}
 
 

@@ -26,6 +26,10 @@ class MenuServiceProvider extends ServiceProvider
 			return new Menu;
 		});
 		$this->app['config']->package( "pulpitum/menu", dirname( __FILE__ ) . "/../../../config" );
+        $this->app->booting(function () {
+          $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+          $loader->alias('MenuDB', 'Pulpitum\Menu\Helpers\MenuDB');
+        });
 	}
 
 	/**

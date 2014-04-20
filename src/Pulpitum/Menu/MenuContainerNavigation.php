@@ -19,6 +19,8 @@ class MenuContainerNavigation
 
 	private $stylesLocation = '';
 
+	private $class = '';
+
 	/* @name Items
 	 * @author Luke Snowden
 	 * @param $items (array)
@@ -155,7 +157,7 @@ class MenuContainerNavigation
 
 		if( $this->type === 'default' )
 		{
-			$return .= "<ul class=\"cf clearfix nav-{$this->name} pm-menu\">";
+			$return .= "<ul class=\"cf clearfix nav-{$this->name} pm-menu {$this->class}\">";
 			$return .=		$this->renderDetail( $structure );
 			$return .= "</ul>";
 			return $return;
@@ -173,7 +175,7 @@ class MenuContainerNavigation
 			{
 				Throw new \Exception( "{$method} does not exist" );
 			}
-			$return .= "<ul class=\"cf clearfix nav-type-{$this->type} pm-menu\">";
+			$return .= "<ul class=\"cf clearfix nav-type-{$this->type} pm-menu {$this->class}\">";
 			$return .=		$style->{$method}( $structure );
 			$return .= "</ul>";
 			return $return;
@@ -402,10 +404,11 @@ class MenuContainerNavigation
 	 * @param $stylesLocation (string)
 	*/
 
-	public function setType( $type, $stylesLocation )
+	public function setType( $type, $stylesLocation, $class )
 	{
 		$this->type = $type;
 		$this->stylesLocation = $stylesLocation;
+		$this->class= $class;
 	}
 
 }
