@@ -13,7 +13,8 @@ class MenuDB extends \Eloquent{
 	public static function render($name = false, $type="bootstrap", $style="Pulpitum\Auth\Menu", $menu_class="nav navbar-nav"){
 		$check = Sentry::check();
 		if($name){
-			$navigation = MenuDB::where( 'menu', '=', $name )->orderBy("weight", "ASC")->get();
+			$lang = \Config::get('app.locale');
+			$navigation = MenuDB::where( 'menu', '=', $name )->whereIn("language", array("all",$lang))->orderBy("order", "ASC")->get();
 			foreach( $navigation as $item )
 			{
 				//print_r($item->attributes);
