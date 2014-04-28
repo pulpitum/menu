@@ -14,13 +14,10 @@ class MenuDB extends \Eloquent{
 		$check = Sentry::check();
 		if($name){
 			$lang = \Config::get('app.locale');
-			$navigation = MenuDB::where( 'menu', '=', $name )->whereIn("language", array("all",$lang))->orderBy("order", "ASC")->get();
+			$navigation = MenuDB::where( 'menu', '=', $name )->whereIn("language", array("all",$lang))->where("status", 1)->orderBy("order", "ASC")->get();
 			foreach( $navigation as $item )
 			{
-				//print_r($item->attributes);
-				if($item->status==0)
-					continue;
-
+				//Auth links
 				if($item->guest == 0 && $check){
 					$permissions = json_decode($item->permissions, 1);
 					if($permissions !== NULL && Sentry::getUser()->hasAnyAccess($permissions)){
@@ -29,8 +26,11 @@ class MenuDB extends \Eloquent{
 			    	elseif($permissions==NULL){
 			    		Menu::addItem( array( 'text' => $item->name, 'URL' => $item->url, 'reference' => $item->id, 'parent' => ($item->parent!=0) ? $item->parent  : false , 'icon'=>$item->icon, 'weight' => $item->order ) )->toMenu( $item->menu );
 			    	}
-
+				//Not auth links
 				}elseif($item->guest == 1 && !$check){
+					Menu::addItem( array( 'text' => $item->name, 'URL' => $item->url, 'reference' => $item->id, 'parent' => ($item->parent!=0) ? $item->parent  : false ,'icon'=>$item->icon, 'weight' => $item->order ) )->toMenu( $item->menu );		    	
+				//All users
+				}elseif($item->guest == 2 ){
 					Menu::addItem( array( 'text' => $item->name, 'URL' => $item->url, 'reference' => $item->id, 'parent' => ($item->parent!=0) ? $item->parent  : false ,'icon'=>$item->icon, 'weight' => $item->order ) )->toMenu( $item->menu );		    	
 				}
 			}
