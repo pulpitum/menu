@@ -20,10 +20,12 @@ class MenuDB extends \Eloquent{
 				//Auth links
 				if($item->guest == 0 && $check){
 					$permissions = json_decode($item->permissions, 1);
+					print_r($permissions);
+
 					if($permissions !== NULL && Sentry::getUser()->hasAnyAccess($permissions)){
 			    		Menu::addItem( array( 'text' => $item->name, 'URL' => $item->url, 'reference' => $item->id, 'parent' => ($item->parent!=0) ? $item->parent  : false ,'icon'=>$item->icon, 'weight' => $item->order ) )->toMenu( $item->menu );
 					}
-			    	elseif($permissions==NULL){
+			    	elseif($permissions == NULL){
 			    		Menu::addItem( array( 'text' => $item->name, 'URL' => $item->url, 'reference' => $item->id, 'parent' => ($item->parent!=0) ? $item->parent  : false , 'icon'=>$item->icon, 'weight' => $item->order ) )->toMenu( $item->menu );
 			    	}
 				//Not auth links
